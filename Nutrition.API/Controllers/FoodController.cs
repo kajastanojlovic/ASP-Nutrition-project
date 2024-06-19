@@ -46,7 +46,7 @@ namespace Nutrition.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public IActionResult UpdateFood(int id, [FromBody] CreateFoodDto dto,
+        public IActionResult UpdateFood(int id, [FromBody] FoodDto dto,
                                               [FromServices] IUpdateFoodCommand command)
         {
             dto.Id = id;
