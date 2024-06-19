@@ -81,6 +81,8 @@ builder.Services.AddTransient<ICreateFoodCommand, EfCreateFoodCommand>();
 builder.Services.AddTransient<CreateFoodDtoValidator>();
 builder.Services.AddTransient<IDeleteFoodCommand, EfDeleteFoodCommand>();
 builder.Services.AddTransient<DeleteFoodValidator>();
+builder.Services.AddTransient<IUpdateFoodCommand, EfUpdateFoodCommand>();
+builder.Services.AddTransient<UpdateFoodValidator>();
 
 
 

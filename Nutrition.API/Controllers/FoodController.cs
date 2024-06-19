@@ -44,5 +44,15 @@ namespace Nutrition.API.Controllers
 
             return StatusCode(204);
         }
+
+        [HttpPut("{id}")]
+        public IActionResult UpdateFood(int id, [FromBody] CreateFoodDto dto,
+                                              [FromServices] IUpdateFoodCommand command)
+        {
+            dto.Id = id;
+            _useCaseHandler.HandleCommand(command, dto);
+
+            return NoContent();
+        }
     }
 }
