@@ -23,7 +23,6 @@ namespace Nutrition.Implementation.UseCases.Commands.Meals
             _actor = actor;
             _validator = validator;
         }
-
         public int Id => 6;
 
         public string Name => "Update meal";

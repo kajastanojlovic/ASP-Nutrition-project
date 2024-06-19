@@ -12,7 +12,7 @@ namespace Nutrition.Implementation.Validators
 {
     public class UpdateMealValidator : AbstractValidator<CreateMealDto>
     {
-        public UpdateMealValidator(NutritionContext context)
+        public UpdateMealValidator()
         {
             CascadeMode = CascadeMode.StopOnFirstFailure;
             RuleFor(x => x.Name).NotNull().WithMessage("Name is required");

@@ -1,4 +1,5 @@
 ﻿using FluentValidation;
+using Microsoft.AspNetCore.Http;
 using Nutrition.Application.DTO;
 using Nutrition.DataAccess;
 using Nutrition.Domain;
@@ -61,23 +62,23 @@ namespace Nutrition.Implementation.Validators
                 .GreaterThan(0)
                 .WithMessage("Target calories must be grater then 0.");
 
-
+            RuleFor(x => x.ImagePath)
+                .Must(x => ImageValidate(x))
+                .WithMessage("Invalid image extension. Only .jpg, .jpeg and .png extensions are allowed")
+                ;
         }
 
 
-        //RuleFor(x => x.ImagePath)
-        //    .Must(x => ImageValidate(x))
-        //    .WithMessage("Invalid image extension. Provide a valid extension.")
-        //    ;
-        //private bool ImageValidate(object image)
-        //{
-        //    if(image == null)
-        //    {
-        //        return true;
-        //    }
-        //    Regex r = new Regex(@"^.*\.(jpg|jpeg|png)$");
-        //    return r.IsMatch(image.ToLower()) ;
-        //}
+
+        private bool ImageValidate(IFormFile image)
+        {
+            string extension = Path.GetExtension(image.FileName);
+            if (extension == ".jpeg" || extension == ".jpg" || extension == ".png")
+            {
+                return true;
+            }
+            return false;
+        }
 
     }
 }
