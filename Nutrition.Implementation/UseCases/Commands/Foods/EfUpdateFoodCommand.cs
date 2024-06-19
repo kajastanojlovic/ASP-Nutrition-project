@@ -38,6 +38,30 @@ namespace Nutrition.Implementation.UseCases.Commands.Foods
 
             food.Name = data.Name;
             food.Brand = data.Brand;
+            Context.FoodsMacronutrients.RemoveRange(food.FoodMacronutrients);
+
+            var foodMacronutrients = data.Macronutrients.Select(x => 
+            {
+                var macronutrient = Context.Macronutrients.FirstOrDefault(m => m.Name == x.Name);
+
+                if(macronutrient == null)
+                {
+                    macronutrient = new Macronutrient
+                    {
+                        Name = x.Name
+                    };
+                    Context.Macronutrients.Add(macronutrient);
+                }
+
+                return new FoodMacronutrient
+                {
+                    Food = food,
+                    Macronutrient = macronutrient,
+                    AmountMacronutrientsPer100g = x.AmountMacronutrientsPer100g
+                };
+            }).ToList();
+
+            Context.FoodsMacronutrients.AddRange(foodMacronutrients);
 
             Context.SaveChanges();
         }
