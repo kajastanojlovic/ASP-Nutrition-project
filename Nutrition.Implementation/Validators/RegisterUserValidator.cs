@@ -27,7 +27,7 @@ namespace Nutrition.Implementation.Validators
             RuleFor(x => x.Password).NotEmpty()
                 .WithMessage("Password is required.")
                 .Matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$")
-                .WithMessage("Minimum eight characters, at least one uppercase letter, one lowercase letter and one number:");
+                .WithMessage("Minimum eight characters, at least one uppercase letter, one lowercase letter and one number.");
            
             RuleFor(x => x.BirthDate).NotEmpty()
                 .WithMessage("Birth date is required.");
